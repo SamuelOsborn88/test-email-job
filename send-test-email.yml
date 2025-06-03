@@ -1,0 +1,17 @@
+name: Send Test Email
+on:
+  schedule:
+    - cron: '0 8 1 * *'  # Run at 8:00 AM UTC on the 1st of every month
+  workflow_dispatch:  # Allow manual trigger
+jobs:
+  send-email:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run PowerShell script
+        run: |
+          .\SendTestEmail.ps1
+        shell: powershell
+        env:
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
