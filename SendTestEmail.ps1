@@ -5,12 +5,12 @@ Start-Transcript -Path $logPath -Append
 # SMTP settings
 $smtpServer = "smtp.office365.com"
 $smtpPort = 587
-$smtpUser = "samuel.osborn@anheuser-busch.com"  # Replace with your email
-$smtpPassword = "${{ secrets.SMTP_PASSWORD }}"  # Stored in GitHub Secrets
+$smtpUser = "samuel.osborn@anheuser-busch.com"  # Your email
+$smtpPassword = $env:SMTP_PASSWORD  # Use environment variable set by GitHub Actions
 $fromAddress = $smtpUser
 $recipients = @("samuel.osborn@anheuser-busch.com")  # Replace with your recipient(s)
 $subject = "Test Email from GitHub Actions"
-$body = "Hello,<br><br>This is a test email sent from GitHub Actions.<br><br>Regards,<br>Your Name"
+$body = "Hello,<br><br>This is a test email sent from GitHub Actions.<br><br>Regards,<br>Samuel Osborn"
 
 try {
     $mailParams = @{
